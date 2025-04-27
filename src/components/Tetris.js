@@ -36,7 +36,7 @@ const Tetris = () => {
         updatePlayerPos({x: 0, y: 1, collided: false});
     }
     const dropPlayer = () => {
-        dropPlayer();
+        drop();
     }
 
     const move = ({keyCode}) => {
@@ -67,7 +67,7 @@ const Tetris = () => {
                         </div>
                     )
                 }
-                 <StartButton onClick={startGame}/>
+                 <StartButton callback={startGame}/>
                 </aside>
             </StyledTetris>
         </StyledTetrisWrapper>
