@@ -5,18 +5,20 @@ import { STAGE_WIDTH } from '../gameHelpers';
 
 export const usePlayer = () => {
     const [player, setPlayer] = useState({
-        pos: { x: 0, y: 0},
+        pos: { x: 0, y: 0 },
         tetromino: TETROMINOS[0].shape,
         collided: false,
     });
 
-    const updatePlayerPos = ({x, y, collided}) => {
+    const updatePlayerPos = ({ x, y, collided }) => {
+        console.log('updatePlayerPos', x, y);
         setPlayer(prev => ({
-            ...prev,
-            pos: {x: (prev.pos.x += x), y: (prev.pos.y += y)},
-            collided: collided,
-        }))
-    }
+          ...prev,
+          pos: { x: prev.pos.x + x, y: prev.pos.y + y },
+          collided,
+        }));
+        console.log('player position', player.pos.x, player.pos.y);
+    };
 
     const resetPlayer = useCallback(
         () => {
@@ -27,7 +29,7 @@ export const usePlayer = () => {
                     collided: false,
                 }
             )
-        }
+        }, []
     )
 
     return [player, updatePlayerPos, resetPlayer];
